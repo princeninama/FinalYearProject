@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import robot from "/robot.png";
-import Bot from "../chatbot/Bot";
 import ChatBot from "./Chatbot";
 const Dashboard = () => {
 

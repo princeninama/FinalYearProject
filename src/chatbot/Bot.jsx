@@ -58,7 +58,7 @@ const Bot = ({setIsBot}) => {
           >
             <Avatar className={`w-8 h-8 ${message.isBot ? "bg-primary" : "bg-secondary"}`}>
               <AvatarImage src="/placeholder-user.jpg" alt="Avatar" />
-              <AvatarFallback>{message.isBot ? <Icon iu={"B"} /> : <Icon iu={"U"} />}</AvatarFallback>
+              <AvatarFallback>{message.isBot ? <Icon iu={true} /> : <Icon iu={false} />}</AvatarFallback>
             </Avatar>
             <div
               className={`max-w-[70%] px-3 py-2 rounded-lg bg-slate-500 ${message.isBot ? "bg-primary text-primary-foreground " : " bg-secondary text-secondary-foreground"
