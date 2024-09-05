@@ -1,11 +1,14 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import robot from "/robot.png";
+import Bot from "../chatbot/Bot";
+import ChatBot from "./Chatbot";
 const Dashboard = () => {
 
-  const [isBotPage, setIsBotPage] = useState(false);
-  if(window.location.pathname === "/chatbot"){
-    setIsBotPage(true);
+  const [isBot, setIsBot] = useState(false);
+  
+  const handleBotClick = () => {
+    setIsBot(!isBot);
   }
 
   return (
@@ -53,11 +56,13 @@ const Dashboard = () => {
       {/* <main className="flex-grow container mx-auto px-4 mt-8 text-center">
         <p className="text-lg text-gray-700">Hello, your content goes here!</p>
       </main> */}
-      { !isBotPage && <div className="h-56 absolute bottom-0 right-5 w-56 rounded-full bg-black">
-        <Link to={"/chatbot"}>
+      { !isBot && <div className="h-56 absolute bottom-0 right-5 w-56 rounded-full bg-black">
+        <div onClick={handleBotClick}>
           <img src={robot} alt="robot" className="rounded-full object-fit" />
-        </Link>
-      </div>}
+        </div>
+      </div>}{
+        isBot && <ChatBot setIsBot={setIsBot} />
+      }
     </div>
   );
 };

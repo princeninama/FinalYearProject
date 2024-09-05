@@ -5,7 +5,7 @@ import { Input } from "./input"
 import { Button } from "./button"
 import Icon from "./Icon"
 
-const Bot = () => {
+const Bot = ({setIsBot}) => {
   const [messages, setMessages] = useState([
     {
       id: 1,
@@ -35,13 +35,18 @@ const Bot = () => {
       setInputValue("")
     }
   }
+
+  const handleClose = () => {
+    setIsBot(false);
+  }
+
   return (
-    <div className="bg-gray-400 text-foreground rounded-lg shadow-lg w-full max-w-2xl">
+    <div className="bg-gray-400 text-foreground rounded-lg shadow-lg w-full">
       <div className="flex items-center justify-between bg-primary text-primary-foreground px-4 py-3 rounded-t-lg">
         <h2 className="text-lg font-medium">ChatBot</h2>
-        <Button variant="ghost" size="icon" className="text-primary-foreground">
+        <Button variant="ghost" size="icon" className="text-primary-foreground" onClick={handleClose}>
           <XIcon className="w-5 h-5" />
-          <span className="sr-only">Close</span>
+          <span className="sr-only" >Close</span>
         </Button>
       </div>
       <div className="h-[500px] overflow-auto px-4 py-3">
