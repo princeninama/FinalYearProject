@@ -1,7 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import robot from "../../public/robot.png";
+import robot from "/robot.png";
 const Dashboard = () => {
+
+  const [isBotPage, setIsBotPage] = useState(false);
+  if(window.location.pathname === "/chatbot"){
+    setIsBotPage(true);
+  }
+
   return (
     <div className="flex flex-col items-center justify-center  bg-gray-100">
       <nav className="bg-white w-full shadow-md py-4">
@@ -47,9 +53,11 @@ const Dashboard = () => {
       {/* <main className="flex-grow container mx-auto px-4 mt-8 text-center">
         <p className="text-lg text-gray-700">Hello, your content goes here!</p>
       </main> */}
-      <div className="h-56 absolute bottom-0 right-5 w-56 rounded-full bg-black">
-        <img src={robot} alt="robot" className="rounded-full object-fit" />
-      </div>
+      { !isBotPage && <div className="h-56 absolute bottom-0 right-5 w-56 rounded-full bg-black">
+        <Link to={"/chatbot"}>
+          <img src={robot} alt="robot" className="rounded-full object-fit" />
+        </Link>
+      </div>}
     </div>
   );
 };
