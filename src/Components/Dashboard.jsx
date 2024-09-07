@@ -1,18 +1,35 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import robot from "/robot.png";
 import ChatBot from "./Chatbot";
 const Dashboard = () => {
 
   const [isBot, setIsBot] = useState(false);
+  const chatbotRef = useRef(null);
+
+  useEffect(() => {
+    const handleOutClick = (e) => {
+      if (chatbotRef.current && !chatbotRef.current.contains(e.target) ) {
+        setIsBot(false);
+        console.log("clicked outside bot");
+      }
+    };
+
+    document.addEventListener("click", handleOutClick);
+    return () => {
+      document.removeEventListener("click", handleOutClick);
+    };
+  }, []);
   
-  const handleBotClick = () => {
-    setIsBot(!isBot);
+  const handleBotClick = (e) => {
+    e.stopPropagation();
+    setIsBot(true);
+    console.log("clicked bot");
   }
 
-  return (
-    <div className="flex flex-col items-center justify-center  bg-gray-100">
-      <nav className="bg-white w-full shadow-md py-4">
+  return (<>
+    <div className={`relative flex flex-col items-center justify-center  bg-gray-100`}>
+      <nav className={`bg-white w-full shadow-md py-4`}>
         <div className="container mx-auto px-4 flex justify-between items-center">
           {/* <h3 className="text-xl font-bold text-gray-800">Campus Dashboard</h3> */}
           <ul className="flex space-x-6 text-gray-700">
@@ -55,14 +72,17 @@ const Dashboard = () => {
       {/* <main className="flex-grow container mx-auto px-4 mt-8 text-center">
         <p className="text-lg text-gray-700">Hello, your content goes here!</p>
       </main> */}
-      { !isBot && <div className="h-56 absolute bottom-0 right-5 w-56 rounded-full bg-black">
-        <div onClick={handleBotClick}>
-          <img src={robot} alt="robot" className="rounded-full object-fit" />
-        </div>
-      </div>}{
-        isBot && <ChatBot setIsBot={setIsBot} />
+      {
+        isBot &&  <div className="fixed bottom-10 flex item-center justify-center z-20 max-w-2xl w-full">
+          <ChatBot ref={chatbotRef} setIsBot={setIsBot} />
+        </div> 
       }
     </div>
+    { !isBot  && <div className=" h-56 absolute bottom-0 right-5 w-56 rounded-full bg-black z-10">
+      <div onClick={handleBotClick}>
+        <img src={robot} alt="robot" className="rounded-full object-fit cursor-pointer" />
+      </div>
+    </div>}</>
   );
 };
 
