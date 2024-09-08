@@ -11,7 +11,7 @@ const Dashboard = () => {
     const handleOutClick = (e) => {
       if (chatbotRef.current && !chatbotRef.current.contains(e.target) ) {
         setIsBot(false);
-        console.log("clicked outside bot");
+        // console.log("clicked outside bot");
       }
     };
 
@@ -24,7 +24,7 @@ const Dashboard = () => {
   const handleBotClick = (e) => {
     e.stopPropagation();
     setIsBot(true);
-    console.log("clicked bot");
+    // console.log("clicked bot");
   }
 
   return (<>
