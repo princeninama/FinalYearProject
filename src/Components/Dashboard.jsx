@@ -72,11 +72,13 @@ const Dashboard = () => {
       {/* <main className="flex-grow container mx-auto px-4 mt-8 text-center">
         <p className="text-lg text-gray-700">Hello, your content goes here!</p>
       </main> */}
+      <div className={` ${isBot?"fixed max-w-full w-screen  max-h-full h-screen flex justify-center backdrop-blur-sm bottom-0":""} `}>
       {
         isBot &&  <div className="fixed bottom-10 flex item-center justify-center z-20 max-w-2xl w-full">
           <ChatBot ref={chatbotRef} setIsBot={setIsBot} />
         </div> 
       }
+      </div>
     </div>
     { !isBot  && <div className=" h-56 absolute bottom-0 right-5 w-56 rounded-full bg-black z-10">
       <div onClick={handleBotClick}>
