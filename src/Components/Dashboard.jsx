@@ -38,21 +38,21 @@ const Dashboard = () => {
                 Home
               </Link>
             </li>
-            <li>
+            {/* <li>
               <Link to="/map" className="hover:text-blue-500">
                 Campus Map
               </Link>
-            </li>
+            </li> */}
             <li>
               <Link to="/events" className="hover:text-blue-500">
                 Events
               </Link>
             </li>
-            <li>
+            {/* <li>
               <Link to="/professors" className="hover:text-blue-500">
                 Professors
               </Link>
-            </li>
+            </li> */}
             <li>
               <Link to="/feedback" className="hover:text-blue-500">
                 Feedback
@@ -74,7 +74,7 @@ const Dashboard = () => {
       </main> */}
       <div className={` ${isBot?"fixed max-w-full w-screen  max-h-full h-screen flex justify-center backdrop-blur-sm bottom-0":""} `}>
       {
-        isBot &&  <div className="fixed bottom-10 flex item-center justify-center z-20 max-w-2xl w-full">
+        isBot &&  <div className="fixed top-32 flex item-center justify-center z-20 max-w-2xl w-full">
           <ChatBot ref={chatbotRef} setIsBot={setIsBot} />
         </div> 
       }
