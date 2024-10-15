@@ -21,14 +21,26 @@ const Bot = ({setIsBot}) => {
     }
   }
 
-  const handleSendMessage = () => {
+const handleSendMessage =  async() => {
     if (inputValue.trim() !== "") {
+      const resp = await fetch(`http://127.0.0.1:8000/querys?query=${inputValue}`)
+
+      if (!resp.ok) {
+        throw new Error(`HTTP error! Status: ${resp.status}`);
+      }
+      
+      // Parse the response data as JSON
+      const data = await resp.json();
+      
+      // Log or use the data as needed
+      // console.log(typeof data.message);
+
       setMessages([
         ...messages,
         { id: messages.length + 1, text: inputValue, isBot: false },
         {
           id: messages.length + 2,
-          text: "I'm afraid I don't have a definitive answer for that. Let me try to provide some helpful information...",
+          text: data.message,
           isBot: true,
         },
       ])
