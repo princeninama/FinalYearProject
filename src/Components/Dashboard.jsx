@@ -1,17 +1,29 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Link } from "react-router-dom";
-import robot from "/robot.png";
+import { Link, Outlet } from "react-router-dom";
+import { motion, AnimatePresence } from "framer-motion";
 import ChatBot from "./Chatbot";
-const Dashboard = () => {
+import robot from "/robot.png";
+import "../CSS/style.css";
 
+const Button = ({ children, size, className, onClick }) => (
+  <button
+    className={`px-4 py-2 rounded ${
+      size === "lg" ? "text-lg" : "text-base"
+    } bg-blue-500 text-white ${className}`}
+    onClick={onClick}
+  >
+    {children}
+  </button>
+);
+
+const Dashboard = () => {
   const [isBot, setIsBot] = useState(false);
   const chatbotRef = useRef(null);
 
   useEffect(() => {
     const handleOutClick = (e) => {
-      if (chatbotRef.current && !chatbotRef.current.contains(e.target) ) {
+      if (chatbotRef.current && !chatbotRef.current.contains(e.target)) {
         setIsBot(false);
-        // console.log("clicked outside bot");
       }
     };
 
@@ -20,71 +32,102 @@ const Dashboard = () => {
       document.removeEventListener("click", handleOutClick);
     };
   }, []);
-  
+
   const handleBotClick = (e) => {
     e.stopPropagation();
     setIsBot(true);
-    // console.log("clicked bot");
-  }
+  };
 
-  return (<>
-    <div className={`relative flex flex-col items-center justify-center  bg-gray-100`}>
-      <nav className={`bg-white w-full shadow-md py-4`}>
+  return (
+    <div className="relative min-h-screen bg-gradient-to-b from-blue-100 to-white">
+      {/* Navigation Bar */}
+      <motion.nav
+        initial={{ y: -100 }}
+        animate={{ y: 0 }}
+        transition={{ type: "spring", stiffness: 100 }}
+        className="bg-white w-full shadow-md py-4 fixed top-0 z-10"
+      >
         <div className="container mx-auto px-4 flex justify-between items-center">
-          {/* <h3 className="text-xl font-bold text-gray-800">Campus Dashboard</h3> */}
+          <motion.h1
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.5 }}
+            className="text-2xl font-bold text-blue-600"
+          >
+            DOCSE Dashboard
+          </motion.h1>
+          <Link to="/" className="hover:text-blue-500 transition-colors">
+           <Dashboard/>
+          </Link>
           <ul className="flex space-x-6 text-gray-700">
-            <li>
-              <Link to="/" className="hover:text-blue-500">
-                Home
-              </Link>
-            </li>
-            {/* <li>
-              <Link to="/map" className="hover:text-blue-500">
-                Campus Map
-              </Link>
-            </li> */}
-            <li>
-              <Link to="/events" className="hover:text-blue-500">
-                Events
-              </Link>
-            </li>
-            {/* <li>
-              <Link to="/professors" className="hover:text-blue-500">
-                Professors
-              </Link>
-            </li> */}
-            <li>
-              <Link to="/feedback" className="hover:text-blue-500">
-                Feedback
-              </Link>
-            </li>
-            <li>
-              <Link to="/resources" className="hover:text-blue-500">
-                Resource Library
-              </Link>
-            </li>
-            {/* <li>
-              <Link to="/news" className="hover:text-blue-500">News</Link>
-            </li> */}
+            {["Events", "Professors", "Feedback", "Resources"].map(
+              (item, index) => (
+                <motion.li
+                  key={item}
+                  initial={{ opacity: 0, y: -20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: index * 0.1 }}
+                >
+                  <Link
+                    to={`/${item.toLowerCase()}`}
+                    className="hover:text-blue-500 transition-colors"
+                  >
+                    {item}
+                  </Link>
+                </motion.li>
+              )
+            )}
           </ul>
         </div>
-      </nav>
-      {/* <main className="flex-grow container mx-auto px-4 mt-8 text-center">
-        <p className="text-lg text-gray-700">Hello, your content goes here!</p>
-      </main> */}
-      <div className={` ${isBot?"fixed max-w-full w-screen  max-h-full h-screen flex justify-center backdrop-blur-sm bottom-0":""} `}>
-      {
-        isBot &&  <div className="fixed top-32 flex item-center justify-center z-20 max-w-2xl w-full">
-          <ChatBot ref={chatbotRef} setIsBot={setIsBot} />
-        </div> 
-      }
+      </motion.nav>
+
+      {/* ChatBot */}
+      <AnimatePresence>
+        {isBot && (
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.8 }}
+            transition={{ type: "spring", stiffness: 200, damping: 20 }}
+            className="fixed inset-0 flex items-center justify-center backdrop-blur-sm z-20"
+          >
+            <ChatBot ref={chatbotRef} setIsBot={setIsBot} />
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Assistant Button */}
+      {!isBot && (
+        <motion.div
+          initial={{ opacity: 0, scale: 0.8, y: 100 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          transition={{
+            delay: 1.5,
+            type: "spring",
+            stiffness: 200,
+            damping: 20,
+          }}
+          className="fixed bottom-5 right-5 z-10"
+        >
+          <Button
+            size="lg"
+            className="rounded-full p-4 shadow-lg"
+            onClick={handleBotClick}
+          >
+            <img
+              src={robot}
+              alt="Assistant"
+              className="rounded-full h-40 bg-black object-cover"
+            />
+          </Button>
+        </motion.div>
+      )}
+
+      {/* Render Children */}
+      <div className="mt-20">
+        <Outlet />
       </div>
     </div>
-    { !isBot  && <div className=" h-56 absolute bottom-0 right-5 w-56 rounded-full bg-black z-10">
-      <div onClick={handleBotClick}>
-        <img src={robot} alt="robot" className="rounded-full object-fit cursor-pointer" />
-      </div>
-    </div>}</>
   );
 };
 
