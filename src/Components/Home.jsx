@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import svnitmap from "../../public/svnitmap.jpg";
-import location from "../../public/location.png";
+import svnitmap from "/svnitmap.jpg";
+import location from "/location.png";
 import "../CSS/style.css";
 
 const Home = () => {

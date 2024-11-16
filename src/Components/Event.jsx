@@ -1,11 +1,11 @@
 import React, { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
-import gitandgithub from "../../public/gitandgithub.png"
-import teacher_day from "../../public/teacher's_day.jpg"
-import codesprinter from "../../public/codesprint.jpg"
-import fiesta from "../../public/fiesta.png"
-import nexus from "../../public/nexus.png"
-import web_wonder from "../../public/web_wonder.jpeg"
+import gitandgithub from "/gitandgithub.png"
+import teacher_day from "/teacher's_day.jpg"
+import codesprinter from "/codesprint.jpg"
+import fiesta from "/fiesta.png"
+import nexus from "/nexus.png"
+import web_wonder from "/web_wonder.jpeg"
 const events = [
   {
     date: "May 2023",

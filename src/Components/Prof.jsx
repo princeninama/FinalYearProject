@@ -169,7 +169,7 @@ export default function ProfessorProfiles() {
 
   const renderCards = (data, ref, isScrolling) => (
     <div
-      className={`overflow-x-auto pb-4 ${
+      className={`overflow-x-auto pb-4 scroll-custom ${
         isScrolling ? "scroll-visible" : "scroll-hidden"
       }`}
       ref={ref}
@@ -204,38 +204,60 @@ export default function ProfessorProfiles() {
   );
 
   return (
-    <div className="container mx-auto p-4 space-y-12">
-      <h2 className="text-3xl font-bold mb-6 text-center text-light-blue-700 underline underline-offset-4">
-        Professor Profiles
-      </h2>
-      {renderCards(professors, profScrollRef, isProfScrolling)}
+    <>
+   <style jsx global>{`
+        .scroll-visible::-webkit-scrollbar {
+          height: 8px;
+        }
+        .scroll-hidden::-webkit-scrollbar {
+          height: 0;
+        }
+        .scroll-visible::-webkit-scrollbar-track {
+          background: #f1f1f1;
+          border-radius: 4px;
+        }
+        .scroll-visible::-webkit-scrollbar-thumb {
+          background: #888;
+          border-radius: 4px;
+        }
+        .scroll-visible::-webkit-scrollbar-thumb:hover {
+          background: #555;
+        }
+      `}</style>
 
-      <h2 className="text-3xl font-bold mb-6 text-center text-light-blue-700 underline underline-offset-4">
-        Assistant Professor Profiles
-      </h2>
-      {renderCards(assistantProfessors, asstProfScrollRef, isAsstProfScrolling)}
+      <div className="container mx-auto p-4 space-y-12">
+        <h2 className="text-3xl font-bold mb-6 text-center text-light-blue-700 underline underline-offset-4">
+          Professor Profiles
+        </h2>
+        {renderCards(professors, profScrollRef, isProfScrolling)}
 
-      <Dialog open={!!selectedProfessor} onOpenChange={() => setSelectedProfessor(null)}>
-        <DialogContent className="sm:max-w-[425px] bg-white border border-light-blue-200 rounded-lg shadow-xl">
-          <DialogHeader>
-            <DialogTitle>{selectedProfessor?.name}</DialogTitle>
-            <DialogDescription>{selectedProfessor?.title}</DialogDescription>
-          </DialogHeader>
-          <div className="mt-4">
-            <h4 className="text-lg font-semibold mb-2 flex items-center">
-              <Award className="w-5 h-5 mr-2 text-primary" />
-              Portfolio
-            </h4>
-            <p className="text-gray-700">{selectedProfessor?.portfolio}</p>
-          </div>
-          <Button
-            onClick={() => setSelectedProfessor(null)}
-            className="bg-gradient-to-r from-light-blue-400 to-light-blue-600 text-white px-4 py-2 rounded-md hover:from-light-blue-500 hover:to-light-blue-700 mt-6"
-          >
-            Close
-          </Button>
-        </DialogContent>
-      </Dialog>
-    </div>
+        <h2 className="text-3xl font-bold mb-6 text-center text-light-blue-700 underline underline-offset-4">
+          Assistant Professor Profiles
+        </h2>
+        {renderCards(assistantProfessors, asstProfScrollRef, isAsstProfScrolling)}
+
+        <Dialog open={!!selectedProfessor} onOpenChange={() => setSelectedProfessor(null)}>
+          <DialogContent className="sm:max-w-[425px] bg-white border border-light-blue-200 rounded-lg shadow-xl">
+            <DialogHeader>
+              <DialogTitle>{selectedProfessor?.name}</DialogTitle>
+              <DialogDescription>{selectedProfessor?.title}</DialogDescription>
+            </DialogHeader>
+            <div className="mt-4">
+              <h4 className="text-lg font-semibold mb-2 flex items-center">
+                <Award className="w-5 h-5 mr-2 text-primary" />
+                Portfolio
+              </h4>
+              <p className="text-gray-700">{selectedProfessor?.portfolio}</p>
+            </div>
+            <Button
+              onClick={() => setSelectedProfessor(null)}
+              className="bg-gradient-to-r from-light-blue-400 to-light-blue-600 text-white px-4 py-2 rounded-md hover:from-light-blue-500 hover:to-light-blue-700 mt-6"
+            >
+              Close
+            </Button>
+          </DialogContent>
+        </Dialog>
+      </div>
+  </>
   );
 }
