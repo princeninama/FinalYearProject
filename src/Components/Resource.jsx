@@ -8,15 +8,19 @@ const resources = [
 
 const ResourceLibrary = () => {
   return (
-    <div>
-      <h2>Resource Library</h2>
-      <ul>
-        {resources.map((resource, index) => (
-          <li key={index}>
-            <a href={resource.link} target="_blank" rel="noopener noreferrer">{resource.title}</a>
-          </li>
-        ))}
-      </ul>
+    <div className='flex justify-center items-center'>
+    <div className='flex gap-x-40'>
+      <div className='h-40 w-40 bg-black flex justify-center items-center hover:w-60 hover:h-60 transition-all duration-500 ease-in-out'>
+      <div className='text-white text-3xl font-serif'>
+        B_Tech
+      </div>
+      </div>
+      <div className='h-40 w-40 bg-black flex justify-center items-center hover:w-60 hover:h-60 transition-all duration-500 ease-in-out'>
+      <div className='text-white text-3xl font-serif'>
+        M_Tech
+      </div>
+      </div>
+    </div>
     </div>
   );
 };
