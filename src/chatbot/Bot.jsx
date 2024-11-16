@@ -1,8 +1,8 @@
 
 import { useState } from "react"
 import { Avatar, AvatarImage, AvatarFallback } from "@radix-ui/react-avatar"
-import { Input } from "./input"
-import { Button } from "./button"
+import { Input } from "../assets/input"
+import { Button } from "../assets/button"
 import Icon from "./Icon"
 
 const Bot = ({setIsBot}) => {
