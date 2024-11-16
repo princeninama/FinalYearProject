@@ -22,7 +22,7 @@ function App() {
         <Route path="resources" element={<ResourceLibrary />} />
         <Route path="news" element={<NewsUpdates />} />
         <Route path="btech" element={<BTech />} />
-      </Route>
+        </Route>
     </Routes>
   );
 }

@@ -36,30 +36,13 @@ const Home = () => {
             </button>
           </div>
         </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.2 }}
-          className="mt-16 max-w-2xl mx-auto"
-        >
-          <h3 className="text-2xl font-semibold text-gray-800 mb-4">Stay Updated</h3>
-          <div className="flex gap-2">
-            <input
-              type="email"
-              placeholder="Enter your email"
-              className="px-4 py-2 border border-gray-300 rounded flex-grow"
-            />
-            <button className="px-4 py-2 bg-blue-500 text-white rounded-lg">Subscribe</button>
-          </div>
-        </motion.div>
       </main>
 
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.2 }}
-        className="mt-16 relative max-w-2xl mx-auto overflow-hidden"
+        className="mt-16 relative max-w-2xl mx-auto"
       >
         {/* Map Image */}
         <img
@@ -69,43 +52,32 @@ const Home = () => {
           onClick={toggleImageFullScreen}
         />
 
-        {/* Location Icon */}
-        <img
-          src={location}
-          alt="Location Icon"
-          className="absolute"
-          style={{
-            bottom: "29%",
-            left: "38%",
-            width: "30px",
-            animation: "bounce 1s infinite",
-          }}
-        />
+        {/* Location Icon with Label */}
+        <div className="absolute flex flex-col items-center animate-bounce" style={{ bottom: "22%", left: "34%" }}>
+          <img src={location} alt="Location Icon" className="w-8 h-8" />
+          <p className="text-sm text-blue-500 font-semibold mt-1 p-2 rounded-2xl bg-slate-300">You Are Here</p>
+        </div>
       </motion.div>
 
+      {/* Fullscreen Map */}
       {isImageFullScreen && (
         <div
           className="fixed inset-0 bg-black bg-opacity-75 z-30 flex justify-center items-center"
           onClick={toggleImageFullScreen}
         >
-          {/* Full Screen Map */}
           <img
             src={svnitmap}
             alt="Full Screen Map"
-            className="max-w-full max-h-full"
+            className="max-w-full max-h-full cursor-pointer"
           />
-          {/* Location Icon on Full Screen */}
-          <img
-            src={location}
-            alt="Location Icon"
-            className="absolute"
-            style={{
-              bottom: "29%",
-              left: "41%",
-              width: "40px",
-              animation: "bounce 1s infinite",
-            }}
-          />
+          {/* Location Icon in Full Screen */}
+          <div
+            className="absolute flex flex-col items-center animate-bounce"
+            style={{ bottom: "24%", left: "38%" }}
+          >
+            <img src={location} alt="Location Icon" className="w-10 h-10" />
+            <p className="text-lg text-white font-semibold mt-1 bg-blue-400 p-2 font-mono rounded-2xl">You Are Here</p>
+          </div>
         </div>
       )}
     </div>

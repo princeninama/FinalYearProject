@@ -1,26 +1,27 @@
-
-import React from 'react';
-
-const resources = [
-  { title: 'React Documentation', link: 'https://reactjs.org/' },
-  { title: 'MDN Web Docs', link: 'https://developer.mozilla.org/' },
-];
-
+import React from "react";
+import { Link, Outlet } from "react-router-dom";
 const ResourceLibrary = () => {
   return (
-    <div className='flex justify-center items-center'>
-    <div className='flex gap-x-40'>
-      <div className='h-40 w-40 bg-black flex justify-center items-center hover:w-60 hover:h-60 transition-all duration-500 ease-in-out'>
-      <div className='text-white text-3xl font-serif'>
-        B_Tech
+    <div className="flex justify-center items-center min-h-screen bg-gray-100">
+      <div className="flex gap-x-20">
+        {/* Card for B_Tech */}
+        <div className="group h-40 w-40 bg-gradient-to-br from-cyan-200 to-sky-100 flex justify-center items-center hover:w-60 hover:h-60 transition-all duration-500 ease-in-out rounded-lg shadow-lg transform hover:scale-110">
+          <Link to="/btech">
+          <div className=" text-3xl text-black font-serif group-hover:text-4xl transition-all duration-300">
+            
+          B_Tech
+            
+          </div>
+            </Link>
+        </div>
+
+        {/* Card for M_Tech */}
+        <div className="group h-40 w-40 bg-gradient-to-br from-sky-100 to-cyan-200 flex justify-center items-center hover:w-60 hover:h-60 transition-all duration-500 ease-in-out rounded-lg shadow-lg transform hover:scale-110">
+          <div className="text-black text-3xl font-serif group-hover:text-4xl transition-all duration-300">
+            M_Tech
+          </div>
+        </div>
       </div>
-      </div>
-      <div className='h-40 w-40 bg-black flex justify-center items-center hover:w-60 hover:h-60 transition-all duration-500 ease-in-out'>
-      <div className='text-white text-3xl font-serif'>
-        M_Tech
-      </div>
-      </div>
-    </div>
     </div>
   );
 };

@@ -48,17 +48,17 @@ const Dashboard = () => {
         className="bg-white w-full shadow-md py-4 fixed top-0 z-10"
       >
         <div className="container mx-auto px-4 flex justify-between items-center">
+          {/* Link to Home */}
           <motion.h1
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.5 }}
             className="text-2xl font-bold text-blue-600"
           >
-            DOCSE Dashboard
+            <Link to="/" className="hover:text-blue-400 transition-colors">
+              DOCSE Dashboard
+            </Link>
           </motion.h1>
-          <Link to="/" className="hover:text-blue-500 transition-colors">
-           <Dashboard/>
-          </Link>
           <ul className="flex space-x-6 text-gray-700">
             {["Events", "Professors", "Feedback", "Resources"].map(
               (item, index) => (
