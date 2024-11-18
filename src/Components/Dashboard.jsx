@@ -56,9 +56,9 @@ const Dashboard = () => {
           >
             DOCSE Dashboard
           </motion.h1>
-          <Link to="/" className="hover:text-blue-500 transition-colors">
+          {/* <Link to="/" className="hover:text-blue-500 transition-colors">
            <Dashboard/>
-          </Link>
+          </Link> */}
           <ul className="flex space-x-6 text-gray-700">
             {["Events", "Professors", "Feedback", "Resources"].map(
               (item, index) => (

@@ -12,9 +12,10 @@ import Home from "./Components/Home";
 
 function App() {
   return (
+   
     <Routes>
-      <Route path="/" element={<Dashboard />}>
-        <Route index element={<Home />} />
+        <Route path="/" element={<Dashboard />} />
+        {/* <Route index element={<Home />} /> */}
         <Route path="map" element={<CampusMap />} />
         <Route path="events" element={<EventCalendar />} />
         <Route path="professors" element={<ProfessorProfiles />} />
@@ -22,7 +23,7 @@ function App() {
         <Route path="resources" element={<ResourceLibrary />} />
         <Route path="news" element={<NewsUpdates />} />
         <Route path="btech" element={<BTech />} />
-      </Route>
+       
     </Routes>
   );
 }
