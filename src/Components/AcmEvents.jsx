@@ -1,14 +1,14 @@
 import React, { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 
-import summerImage from "../../public/acm_summer.webp";
-import dotslashImage from "../../public/acm_dotslash6.jpg";
-import epiphanyImage from "../../public/acm_epiphany.jpg";
-import inceptionImage from "../../public/acm_inception.jpg";
-import codewarsImage from "../../public/acm_codewars.jpg";
-import hourofcodeImage from "../../public/acm_hourofcode.jpg";
-import opensourceImage from "../../public/acm_opensource.jpg";
-import ideathonImage from "../../public/acm_ideathon.jpg";
+import summerImage from "/acm_summer.webp";
+import dotslashImage from "/acm_dotslash6.jpg";
+import epiphanyImage from "/acm_epiphany.jpg";
+import inceptionImage from "/acm_inception.jpg";
+import codewarsImage from "/acm_codewars.jpg";
+import hourofcodeImage from "/acm_hourofcode.jpg";
+import opensourceImage from "/acm_opensource.jpg";
+import ideathonImage from "/acm_ideathon.jpg";
 
 const EventDetails = [
   {

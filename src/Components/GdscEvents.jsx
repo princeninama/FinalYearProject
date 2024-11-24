@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 
-import infosession from "../../public/gdsc_info.jpeg"
-import hackathons from "../../public/gdsc_hackathons.jpeg";
-import workshops from "../../public/gdsc_workshops.jpeg";
-import quizzes from "../../public/gdsc_quiz.jpeg";
+import infosession from "/gdsc_info.jpeg"
+import hackathons from "/gdsc_hackathons.jpeg";
+import workshops from "/gdsc_workshops.jpeg";
+import quizzes from "/gdsc_quiz.jpeg";
 
 const EventDetails = [
   {
