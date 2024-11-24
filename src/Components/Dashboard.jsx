@@ -60,7 +60,7 @@ const Dashboard = () => {
             </Link>
           </motion.h1>
           <ul className="flex space-x-6 text-gray-700">
-            {["Events", "Professors", "Feedback", "Resources"].map(
+            {["Clubs", "Professors", "Feedback", "Resources"].map(
               (item, index) => (
                 <motion.li
                   key={item}
