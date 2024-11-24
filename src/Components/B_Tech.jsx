@@ -6,9 +6,9 @@ const BTech = () => {
     { "2nd sem": "https://drive.google.com/drive/folders/1gnxNxQv4XKC5_wutKwMaKArZaCiF34K5?usp=drive_link" },
     { "3rd sem": "https://drive.google.com/drive/folders/1qaYRPfkFQp_zM4pN3vIrcA8oisftMfX5?usp=drive_link" },
     { "4th sem": "https://drive.google.com/drive/folders/1u5naHYHV5YuYxfcnrVJgwCycCbGrYJkQ?usp=drive_link" },
-    { "5th sem": "" },
-    { "6th sem": "" },
-    { "7th sem": "" },
+    { "5th sem": "https://drive.google.com/drive/folders/1B5F9tqM9hT5UN0UL-klGaSlnxTZT5K6M?usp=sharing" },
+    { "6th sem": "https://drive.google.com/drive/folders/1VJ316zhmupVibMkU29sFqs3UmphEvLwS?usp=sharing" },
+    { "7th sem": "https://drive.google.com/drive/folders/1OB6QxYE3P5L5IuSka97cqMi2gVaF92z0?usp=sharing" },
   ];
 
   return (
