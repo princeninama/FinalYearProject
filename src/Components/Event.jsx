@@ -104,7 +104,7 @@ const Events = () => {
               }}
             >
               {/* Event Image */}
-              <div className="flex-shrink-0 aspect-w-1 aspect-h-1 w-32">
+              <div className="flex-shrink-0 aspect-w-1 aspect-h-1 w-64">
   <img
     src={event.image}
     alt={event.title}
