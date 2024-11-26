@@ -20,18 +20,18 @@ const Dashboard = () => {
   const [isBot, setIsBot] = useState(false);
   const chatbotRef = useRef(null);
 
-  useEffect(() => {
-    const handleOutClick = (e) => {
-      if (chatbotRef.current && !chatbotRef.current.contains(e.target)) {
-        setIsBot(false);
-      }
-    };
+  // useEffect(() => {
+  //   const handleOutClick = (e) => {
+  //     if (chatbotRef.current && !chatbotRef.current.contains(e.target)) {
+  //       setIsBot(false);
+  //     }
+  //   };
 
-    document.addEventListener("click", handleOutClick);
-    return () => {
-      document.removeEventListener("click", handleOutClick);
-    };
-  }, []);
+  //   document.addEventListener("click", handleOutClick);
+  //   return () => {
+  //     document.removeEventListener("click", handleOutClick);
+  //   };
+  // }, []);
 
   const handleBotClick = (e) => {
     e.stopPropagation();
