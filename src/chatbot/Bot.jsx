@@ -80,9 +80,7 @@ const Bot = ({ setIsBot }) => {
             }`}
           >
             <Avatar
-              className={`w-8 h-8 ${
-                message.isBot ? "bg-blue-600" : "bg-gray-400"
-              }`}
+              className={`w-8 h-8`}
             >
               <AvatarImage src="/placeholder-user.jpg" alt="Avatar" />
               <AvatarFallback>
@@ -104,7 +102,7 @@ const Bot = ({ setIsBot }) => {
         {/* Typing Indicator for loading state */}
         {loading && (
           <div className="flex items-start gap-3">
-            <Avatar className="w-8 h-8 bg-blue-600">
+            <Avatar className="w-8 h-8">
               <AvatarImage src="/placeholder-user.jpg" alt="Avatar" />
               <AvatarFallback>
                 <Icon iu={true} />

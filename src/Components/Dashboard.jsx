@@ -20,18 +20,18 @@ const Dashboard = () => {
   const [isBot, setIsBot] = useState(false);
   const chatbotRef = useRef(null);
 
-  useEffect(() => {
-    const handleOutClick = (e) => {
-      if (chatbotRef.current && !chatbotRef.current.contains(e.target)) {
-        setIsBot(false);
-      }
-    };
+  // useEffect(() => {
+  //   const handleOutClick = (e) => {
+  //     if (chatbotRef.current && !chatbotRef.current.contains(e.target)) {
+  //       setIsBot(false);
+  //     }
+  //   };
 
-    document.addEventListener("click", handleOutClick);
-    return () => {
-      document.removeEventListener("click", handleOutClick);
-    };
-  }, []);
+  //   document.addEventListener("click", handleOutClick);
+  //   return () => {
+  //     document.removeEventListener("click", handleOutClick);
+  //   };
+  // }, []);
 
   const handleBotClick = (e) => {
     e.stopPropagation();
@@ -60,7 +60,7 @@ const Dashboard = () => {
             </Link>
           </motion.h1>
           <ul className="flex space-x-6 text-gray-700">
-            {["Events", "Professors", "Feedback", "Resources"].map(
+            {["Clubs", "Professors", "Feedback", "Resources"].map(
               (item, index) => (
                 <motion.li
                   key={item}
