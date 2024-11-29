@@ -7,3 +7,29 @@
     }
   }
   
+body {
+  scroll-behavior: smooth;
+}
+
+div .animate-bounce {
+  animation: bounce 1s infinite;
+}
+
+
+
+/* General Styles */
+button {
+  transition: all 0.3s ease-in-out;
+}
+
+button:hover {
+  transform: translateY(-2px);
+}
+
+input, textarea {
+  font-size: 1rem;
+}
+
+form h2 {
+  font-family: 'Georgia', serif; /* Matches the serif style */
+}

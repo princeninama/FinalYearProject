@@ -1,8 +1,8 @@
-import { useState } from "react"
-import { Avatar, AvatarImage, AvatarFallback } from "@radix-ui/react-avatar"
-import { Input } from "../assets/input"
-import { Button } from "../assets/button"
-import Icon from "./Icon"
+import { useState } from "react";
+import { Avatar, AvatarImage, AvatarFallback } from "@radix-ui/react-avatar";
+import { Input } from "../assets/input";
+import { Button } from "../assets/button";
+import Icon from "./Icon";
 
 const Bot = ({ setIsBot }) => {
   const [messages, setMessages] = useState([
@@ -11,15 +11,15 @@ const Bot = ({ setIsBot }) => {
       text: "Hello! How can I assist you today?",
       isBot: true,
     },
-  ])
-  const [inputValue, setInputValue] = useState("")
-  const [loading, setLoading] = useState(false) // Loading state for bot response
+  ]);
+  const [inputValue, setInputValue] = useState("");
+  const [loading, setLoading] = useState(false); // Loading state for bot response
 
   const handleKeyDown = (e) => {
     if (e.key === "Enter") {
-      handleSendMessage()
+      handleSendMessage();
     }
-  }
+  };
 
   const handleSendMessage = async () => {
     if (inputValue.trim() !== "") {
@@ -27,57 +27,74 @@ const Bot = ({ setIsBot }) => {
       setMessages([
         ...messages,
         { id: messages.length + 1, text: inputValue, isBot: false },
-      ])
-      setInputValue("")
-      setLoading(true) // Set loading state to true
+      ]);
+      setInputValue("");
+      setLoading(true); // Set loading state to true
 
       try {
-        const resp = await fetch(`http://127.0.0.1:8000/querys?query=${inputValue}`)
-        
+        const resp = await fetch(
+          `http://127.0.0.1:8000/querys?query=${inputValue}`
+        );
+
         if (!resp.ok) {
-          throw new Error(`HTTP error! Status: ${resp.status}`)
+          throw new Error(`HTTP error! Status: ${resp.status}`);
         }
 
-        const data = await resp.json()
+        const data = await resp.json();
         setMessages((prevMessages) => [
           ...prevMessages,
           { id: prevMessages.length + 2, text: data.message, isBot: true },
-        ])
+        ]);
       } catch (error) {
-        console.error("Error fetching bot response:", error)
+        console.error("Error fetching bot response:", error);
       } finally {
-        setLoading(false) // Hide loading indicator when response is received
+        setLoading(false); // Hide loading indicator when response is received
       }
     }
-  }
+  };
 
   const handleClose = () => {
-    setIsBot(false)
-  }
+    setIsBot(false);
+  };
 
   return (
-    <div className="bg-gray-400 text-foreground rounded-lg shadow-lg w-full">
-      <div className="flex items-center justify-between bg-primary text-primary-foreground px-4 py-3 rounded-t-lg">
-        <h2 className="text-lg font-medium">ChatBot</h2>
-        <Button variant="ghost" size="icon" className="text-primary-foreground" onClick={handleClose}>
+    <div className="bg-gray-100 text-gray-800 rounded-lg shadow-lg w-full max-w-md mx-auto">
+      <div className="flex items-center justify-between bg-blue-600 text-white px-4 py-3 rounded-t-lg">
+        <h2 className="text-lg font-semibold">ChatBot</h2>
+        <Button
+          variant="ghost"
+          size="icon"
+          className="text-white hover:bg-blue-700 p-1 rounded-full"
+          onClick={handleClose}
+        >
           <XIcon className="w-5 h-5" />
           <span className="sr-only">Close</span>
         </Button>
       </div>
-      <div className="h-[500px] overflow-auto px-4 py-3">
+      <div className="h-[500px] overflow-auto px-4 py-3 space-y-4">
         {messages.map((message) => (
           <div
             key={message.id}
-            className={`flex items-start gap-3 mb-4 ${message.isBot ? "justify-start" : "justify-end self-end text-right"
-              }`}
+            className={`flex items-start gap-3 ${
+              message.isBot ? "justify-start" : "justify-end"
+            }`}
           >
-            <Avatar className={`w-8 h-8 ${message.isBot ? "bg-primary" : "bg-secondary"}`}>
+            <Avatar
+              className={`w-8 h-8 ${
+                message.isBot ? "bg-blue-600" : "bg-gray-400"
+              }`}
+            >
               <AvatarImage src="/placeholder-user.jpg" alt="Avatar" />
-              <AvatarFallback>{message.isBot ? <Icon iu={true} /> : <Icon iu={false} />}</AvatarFallback>
+              <AvatarFallback>
+                {message.isBot ? <Icon iu={true} /> : <Icon iu={false} />}
+              </AvatarFallback>
             </Avatar>
             <div
-              className={`max-w-[70%] px-3 py-2 rounded-lg ${message.isBot ? "bg-primary text-primary-foreground" : "bg-secondary text-secondary-foreground"
-                }`}
+              className={`max-w-[70%] px-4 py-2 rounded-lg text-sm shadow ${
+                message.isBot
+                  ? "bg-blue-600 text-white"
+                  : "bg-gray-300 text-gray-800"
+              }`}
             >
               {message.text}
             </div>
@@ -86,35 +103,43 @@ const Bot = ({ setIsBot }) => {
 
         {/* Typing Indicator for loading state */}
         {loading && (
-          <div className="flex items-start gap-3 mb-4 justify-start">
-            <Avatar className="w-8 h-8 bg-primary">
+          <div className="flex items-start gap-3">
+            <Avatar className="w-8 h-8 bg-blue-600">
               <AvatarImage src="/placeholder-user.jpg" alt="Avatar" />
-              <AvatarFallback><Icon iu={true} /></AvatarFallback>
+              <AvatarFallback>
+                <Icon iu={true} />
+              </AvatarFallback>
             </Avatar>
-            <div className="max-w-[70%] px-3 py-2 rounded-lg bg-primary text-primary-foreground">
+            <div className="max-w-[70%] px-4 py-2 rounded-lg bg-blue-600 text-white">
               <TypingIndicator />
             </div>
           </div>
         )}
       </div>
-      <div className="border-t px-4 py-3 flex items-center" onKeyDown={handleKeyDown}>
+      <div
+        className="border-t border-gray-200 px-4 py-3 flex items-center gap-2"
+        onKeyDown={handleKeyDown}
+      >
         <Input
           type="text"
           placeholder="Type your message..."
           value={inputValue}
           onChange={(e) => setInputValue(e.target.value)}
-          className="flex-1 mr-2"
+          className="flex-1 px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-400"
         />
-        <Button onClick={handleSendMessage}>
+        <Button
+          className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 flex items-center justify-center"
+          onClick={handleSendMessage}
+        >
           <SendIcon className="w-5 h-5" />
           <span className="sr-only">Send</span>
         </Button>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Bot
+export default Bot;
 
 // Typing indicator animation component
 function TypingIndicator() {
@@ -124,7 +149,7 @@ function TypingIndicator() {
       <div className="h-2 w-2 bg-white rounded-full animate-bounce delay-75"></div>
       <div className="h-2 w-2 bg-white rounded-full animate-bounce delay-150"></div>
     </div>
-  )
+  );
 }
 
 function SendIcon(props) {
@@ -144,7 +169,7 @@ function SendIcon(props) {
       <path d="m22 2-7 20-4-9-9-4Z" />
       <path d="M22 2 11 13" />
     </svg>
-  )
+  );
 }
 
 function XIcon(props) {
@@ -164,5 +189,5 @@ function XIcon(props) {
       <path d="M18 6 6 18" />
       <path d="m6 6 12 12" />
     </svg>
-  )
+  );
 }

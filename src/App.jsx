@@ -14,7 +14,7 @@ function App() {
   return (
    
     <Routes>
-        <Route path="/" element={<Dashboard />} />
+        <Route path="/" element={<Dashboard />} >
         {/* <Route index element={<Home />} /> */}
         <Route path="map" element={<CampusMap />} />
         <Route path="events" element={<EventCalendar />} />
@@ -23,7 +23,7 @@ function App() {
         <Route path="resources" element={<ResourceLibrary />} />
         <Route path="news" element={<NewsUpdates />} />
         <Route path="btech" element={<BTech />} />
-       
+        </Route>
     </Routes>
   );
 }
